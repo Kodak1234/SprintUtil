@@ -16,7 +16,7 @@ public class SprintUtil {
     static {
         TIME.setTimeZone(getTimeZone("TIME"));
     }
-    
+
     private static long sprintBase() {
         Calendar cal = getInstance();
         cal.set(YEAR, 2019);
@@ -44,6 +44,13 @@ public class SprintUtil {
         long base = sprintBase();
         long n = sprintEnd(base, end) + _1_DAY;
         long e = sprintEnd(base, n);
+        return new long[]{n, e};
+    }
+
+    public static long[] previousSprint(long time) {
+        long base = sprintBase();
+        long e = sprintStart(base, time) - _1_DAY;
+        long n = sprintStart(base, e);
         return new long[]{n, e};
     }
 
